@@ -1,2 +1,2 @@
 # chrome-dino-cheats-
-Hi, this is my first repository on GitHub. It was created purely for educational purposes XD LOL :D
+To successfully launch the project on UNIX systems, enter the command `xhost +SI:localuser:root` to allow the root user to access the screen display >:D
