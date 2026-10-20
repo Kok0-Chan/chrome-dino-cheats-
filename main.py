@@ -1,21 +1,26 @@
 import pyautogui
 from time import sleep
 import keyboard
-import sys
 
 x, y = 1486, 904
-print("Нажми на 'q', чтобы выйти из программы")
+running = True
 
+def exit_handler():
+    global running
+    print("Exiting program")
+    running = False
 
-while True:
+keyboard.add_hotkey('q', exit_handler)
+print("Press 'q' to exit")
+
+def is_target(color, target=(242, 242, 242), tol=5):
+    return all(abs(a - b) <= tol for a, b in zip(color, target))
+
+while running:
     color = pyautogui.pixel(x, y)
-    if color != (242, 242, 242):
+    if not is_target(color):
         keyboard.press_and_release('space')
-        print("Пробел нажат!")
-    print("Цвет пикселя:", color)
-    def my_action():
-        print("Выход из программы")
-        sys.exit(1)
-
-
-    keyboard.add_hotkey('q', my_action)
+        print("Space pressed!")
+    else:
+        print("Pixel color:", color)
+    sleep(0.02)
